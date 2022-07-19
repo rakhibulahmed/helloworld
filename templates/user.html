@@ -1,0 +1,47 @@
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/contact-bg.jpg')}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Your Profile</h1>
+            <span class="subheading">Welcome Back, {{current_user.name}}!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+<table style="text-align: center;" class="table table-borderless">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img style="border-radius: 50%; height: 55px; margin-bottom: 2%;" src="{{ current_user.email | gravatar }}"/></td>
+        </tr>
+      <tr>
+            <td><strong>Your Name; &nbsp;&nbsp;</strong>{{current_user.name}}</td>
+      </tr>
+      <tr>
+            <td><strong>Your Email; &nbsp;&nbsp;</strong>{{current_user.email}}</td>
+      </tr>
+        <tr>
+            <td><strong>Last Active; &nbsp;&nbsp;</strong> {{current_user.last_logout_time}}</td>
+        </tr>
+      <tr>  
+            {% if current_user.is_authenticated: %}
+                <td colspan="2">Active</td>
+            {% else: %}
+            <td colspan="2">Inactive</td>
+            {% endif %}
+      </tr>
+    </tbody>
+  </table>
+{% include "footer.html" %}
